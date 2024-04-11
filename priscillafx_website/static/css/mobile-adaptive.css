@@ -1,0 +1,27 @@
+/* Дополнительные стили для мобильных устройств */
+@media only screen and (max-width: 600px) {
+    body {
+      font-size: 0.9em;
+    }
+  
+    header {
+      padding: 10px;
+    }
+  
+    .logo {
+      width: 128px;
+    }
+  
+    nav {
+      padding: 10px;
+    }
+  
+    nav ul li {
+      margin-bottom: 10px;
+    }
+  
+    footer {
+      padding: 10px;
+    }
+  }
+  

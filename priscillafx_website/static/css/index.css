@@ -1,0 +1,86 @@
+/* Объявление пользовательского шрифта */
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/static/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+/* Главный контейнер */
+html,
+body {
+  font-family: "JetBrainsMono";
+  font-size: 1.4em;
+  color: white;
+  background-color: white;
+  margin: 0;
+  background-image: url("/static/img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+body::-webkit-scrollbar {
+  width: 0 !important; /* hide scrollbar for Chrome, Safari and Opera */
+}
+
+/* Заголовок */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Основные стили */
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+/* Логотип */
+.logo {
+  width: 256px;
+}
+
+/* Навигация */
+nav {
+  text-align: right;
+  padding: 20px;
+}
+
+/* Список */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Пункты списка */
+nav ul li {
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Ссылки в списке */
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.4em;
+}
+
+/* Ссылки в состоянии наведения */
+nav ul li a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 20px;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 56.69">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #432777;
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Garamond, Garamond;
+        font-size: 8.5px;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_3" data-name="Слой 3">
+    <rect class="cls-1" y="0" width="56.69" height="56.69" rx="2.83" ry="2.83"/>
+  </g>
+  <g id="_Слой_2" data-name="Слой 2">
+    <text class="cls-2" transform="translate(7.09 31.15)"><tspan x="0" y="0">P r i s c i l l a </tspan></text>
+  </g>
+</svg>
