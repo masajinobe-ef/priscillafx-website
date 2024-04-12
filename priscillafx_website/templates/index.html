@@ -18,9 +18,19 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', path='/css/mobile-adaptive.css') }}"
+      href="{{ url_for('static', path='/css/icons.css') }}"
     />
-    <link rel="icon" type="image/ico" href="/static/img/favicon.ico" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/additional.css') }}"
+    />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+
+    <script
+      src="{{ url_for('static', path='/js/random-bg.js') }}"
+      defer
+    ></script>
   </head>
 
   <body>
@@ -32,11 +42,25 @@
     <main>
       <nav>
         <ul>
-          <li><a href="index">Blog</a></li>
-          <li><a href="custom">Custom</a></li>
-          <li><a href="mods">Mods</a></li>
-          <li><a href="faq">F.A.Q.</a></li>
-          <li><a href="about">About</a></li>
+          <li>
+            <a href="blog"><span class="icon" data-icon="blog"></span>Blog</a>
+          </li>
+          <li>
+            <a href="custom"
+              ><span class="icon" data-icon="custom"></span>Custom</a
+            >
+          </li>
+          <li>
+            <a href="mods"><span class="icon" data-icon="mods"></span>Mods</a>
+          </li>
+          <li>
+            <a href="faq"><span class="icon" data-icon="faq"></span>F.A.Q.</a>
+          </li>
+          <li>
+            <a href="about"
+              ><span class="icon" data-icon="about"></span>About</a
+            >
+          </li>
         </ul>
       </nav>
     </main>

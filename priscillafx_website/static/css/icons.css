@@ -1,0 +1,29 @@
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 10px;
+}
+
+.icon[data-icon="blog"] {
+  background-image: url("/static/icons/icon-blog.svg");
+}
+
+.icon[data-icon="custom"] {
+  background-image: url("/static/icons/icon-custom.svg");
+}
+
+.icon[data-icon="mods"] {
+  background-image: url("/static/icons/icon-mods.svg");
+}
+
+.icon[data-icon="faq"] {
+  background-image: url("/static/icons/icon-faq.svg");
+}
+
+.icon[data-icon="about"] {
+  background-image: url("/static/icons/icon-about.svg");
+}

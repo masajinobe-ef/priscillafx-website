@@ -1,21 +1,15 @@
-from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-import ssl
-
-app = FastAPI()
-
-ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-templates = Jinja2Templates(directory="templates")
+from fastapi import Request
+from depends import app, templates
+from admin import admin_function
 
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    admin_result = admin_function()
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "admin_result": admin_result}
+    )
 
 
 @app.get("/{page_name}", response_class=HTMLResponse)
@@ -31,7 +25,7 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=8080,
-        reload=False,
+        reload=True,
         ssl_certfile="cert/cert.pem",
         ssl_keyfile="cert/key.pem",
     )

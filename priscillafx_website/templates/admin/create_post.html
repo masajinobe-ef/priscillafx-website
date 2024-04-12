@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание поста в блоге</title>
+</head>
+<body>
+    <h1>Создание поста в блоге</h1>
+    <form action="/admin/blog" method="post">
+        <label for="title">Заголовок:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="content">Содержание:</label>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+        <label for="file">Выберите файл:</label>
+        <input type="file" id="file" name="file"><br>
+        <label for="video">Ссылка на видео:</label>
+        <input type="text" id="video" name="video"><br>
+        <button type="submit">Создать пост</button>
+    </form>
+</body>
+</html>
