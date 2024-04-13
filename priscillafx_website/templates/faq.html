@@ -13,46 +13,45 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', path='/css/faq.css') }}"
+      href="{{ url_for('static', path='/css/main/faq.css') }}"
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', path='/css/icons.css') }}"
+      href="{{ url_for('static', path='/css/main/icons.css') }}"
     />
     <link
       rel="stylesheet"
       type="text/css"
       href="{{ url_for('static', path='/css/additional.css') }}"
     />
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico" />
   </head>
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <li>
-            <a href="blog"><span class="icon" data-icon="blog"></span>Blog</a>
-          </li>
-          <li>
-            <a href="custom"
-              ><span class="icon" data-icon="custom"></span>Custom</a
-            >
-          </li>
-          <li>
-            <a href="mods"><span class="icon" data-icon="mods"></span>Mods</a>
-          </li>
-          <li>
-            <a href="faq"><span class="icon" data-icon="faq"></span>F.A.Q.</a>
-          </li>
-          <li>
-            <a href="about"
-              ><span class="icon" data-icon="about"></span>About</a
-            >
-          </li>
-        </ul>
-      </nav>
+      <div class="menu-container">
+        <nav>
+          <ul>
+            <li>
+              <a href="blog"><span class="icon" data-icon="blog"></span>Blog</a>
+            </li>
+            <li>
+              <a href="custom"
+                ><span class="icon" data-icon="custom"></span>Custom</a
+              >
+            </li>
+            <li>
+              <a href="mods"><span class="icon" data-icon="mods"></span>Mods</a>
+            </li>
+            <li>
+              <a href="about"
+                ><span class="icon" data-icon="about"></span>About</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main>

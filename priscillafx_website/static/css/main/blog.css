@@ -1,0 +1,88 @@
+body {
+  font-family: JetBrainsMono, sans-serif;
+  font-size: 2em;
+  color: white;
+  background: url("/static/img/bg/bg6.jpg");
+  /* no-repeat center center/cover */
+  background-color: #000;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+
+  h1 {
+    text-shadow: 4px 4px 4px #000;
+  }
+
+  .logo {
+    width: 256px;
+  }
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  .icon[data-icon] {
+    filter: invert(1);
+  }
+
+  li:hover .icon[data-icon] {
+    filter: invert(0);
+  }
+
+  .menu-container {
+    nav {
+      text-align: left;
+      padding: 20px;
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        background-color: #000;
+
+        li {
+          margin-bottom: 10px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #fff;
+          }
+
+          a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.4em;
+            display: block;
+
+            &:hover {
+              text-shadow: #000 3px 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 20px;
+  text-shadow: 4px 4px 4px #000;
+}

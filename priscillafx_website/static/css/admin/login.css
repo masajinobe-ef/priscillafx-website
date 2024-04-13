@@ -1,0 +1,102 @@
+body {
+  font-family: JetBrainsMono, sans-serif;
+  font-size: 1.4em;
+  color: black;
+  background-color: #000;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #422777;
+  padding: 20px 0;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lavender;
+  padding: 20px;
+
+  .info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    img {
+      width: 50%;
+      margin: 0px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 1.4em;
+        font-weight: 500;
+        margin-bottom: 0.1rem;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1.4em;
+        transition: border-color 0.3s;
+        text-align: center;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        border-color: #422777;
+        box-shadow: 0 0 0 2px #422777;
+        outline: none;
+      }
+
+      button[type="submit"] {
+        background-color: #422777;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 20px;
+        font-size: 1.4em;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #fff;
+        color: #422777;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: #422777;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
