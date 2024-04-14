@@ -1,22 +1,12 @@
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi import Request
-from depends import app, templates
-from admin import admin_function
-
-
-# Инициализация иконки
-@app.get('/favicon.ico', include_in_schema=False)
-async def favicon():
-    return FileResponse("static/icons/favicon.ico")
+from initialization import app, templates
 
 
 # Обработчик корневого URL-адреса
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    admin_result = admin_function()  # Вызов функции admin_function
-    return templates.TemplateResponse(
-        "index.html", {"request": request, "admin_result": admin_result}
-    )
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 # Обработчик для динамических страниц
@@ -32,7 +22,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8080,
+        port=443,
         reload=False,
         ssl_certfile="cert/cert.pem",
         ssl_keyfile="cert/key.pem",
