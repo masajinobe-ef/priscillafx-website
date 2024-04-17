@@ -1,27 +1,16 @@
+# FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi import Request
 
-from auth.config import auth_backend, fastapi_users
-from auth.schemas import UserRead, UserCreate
+# Routers depends
+from auth.router import router as router_auth
+from blog.router import router as router_blog
 
+# Initialization app
 from initialization import app, templates
 
 
-# Авторизация
-app.include_router(
-    fastapi_users.get_auth_router(auth_backend),
-    prefix="/auth",
-    tags=["Auth"],
-)
-
-app.include_router(
-    fastapi_users.get_register_router(UserRead, UserCreate),
-    prefix="/auth",
-    tags=["Auth"],
-)
-
-
-# Обработчик корневого URL-адреса
+# Root page
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse(
@@ -29,7 +18,7 @@ async def read_root(request: Request):
     )
 
 
-# Обработчик для динамических страниц
+# Pages
 @app.get("/{page_name}", response_class=HTMLResponse)
 async def read_item(request: Request, page_name: str):
     return templates.TemplateResponse(
@@ -37,7 +26,23 @@ async def read_item(request: Request, page_name: str):
     )
 
 
-# Запуск сервера Uvicorn из main.py
+# Admin-panel
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_login(request: Request):
+    return templates.TemplateResponse("admin/login.html", {"request": request})
+
+
+@app.get("/admin/menu", response_class=HTMLResponse)
+async def admin_menu(request: Request):
+    return templates.TemplateResponse("admin/menu.html", {"request": request})
+
+
+# Routers
+app.include_router(router_auth)
+app.include_router(router_blog)
+
+
+# Uvicorn
 # if __name__ == "__main__":
 #     import uvicorn
 

@@ -1,5 +1,6 @@
 from typing import Optional
 
+# FastAPI Users
 from fastapi_users import schemas
 
 
@@ -19,8 +20,8 @@ class UserRead(schemas.BaseUser[int]):
 class UserCreate(schemas.BaseUserCreate):
     email: str
     username: str
-    role_id: int
     password: str
+    role_id: int
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     is_verified: Optional[bool] = False

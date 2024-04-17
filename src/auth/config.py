@@ -1,3 +1,4 @@
+# FastAPI Users
 from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import (
     AuthenticationBackend,
@@ -5,12 +6,15 @@ from fastapi_users.authentication import (
     CookieTransport,
 )
 
+# Auth depends
 from auth.manager import get_user_manager
 from auth.models import User
 
+# Config
 from config import SECRET_AUTH
 
 
+# Cookie with JWT
 cookie_transport = CookieTransport(
     cookie_name="priscillafx", cookie_max_age=3600
 )
