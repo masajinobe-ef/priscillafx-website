@@ -4,4 +4,7 @@ DB_NAME=postgres
 DB_USER=postgres
 DB_PASS=postgres
 
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
 SECRET_AUTH=secret

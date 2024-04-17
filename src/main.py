@@ -2,12 +2,22 @@
 from fastapi.responses import HTMLResponse
 from fastapi import Request
 
+# FastAPI Cache
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend
+
 # Routers depends
 from auth.router import router as router_auth
 from blog.router import router as router_blog
 
+# Redis
+from redis import asyncio as aioredis
+
 # Initialization app
 from initialization import app, templates
+
+# Config
+from config import REDIS_HOST, REDIS_PORT
 
 
 # Root page
@@ -40,6 +50,13 @@ async def admin_menu(request: Request):
 # Routers
 app.include_router(router_auth)
 app.include_router(router_blog)
+
+
+# Startup events
+@app.on_event("startup")
+async def startup():
+    redis = aioredis.from_url(f"redis://{REDIS_HOST}:{REDIS_PORT}")
+    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
 
 
 # Uvicorn
