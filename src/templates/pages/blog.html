@@ -35,9 +35,19 @@
 
     <main>
       <div class="posts-container">
+        {% for post in posts %}
         <div class="post">
-          <!-- post content -->
+          <div class="created-at">{{ post.created_at }}</div>
+          <div>
+            <img class="image" src="{{ post.image_url }}" alt="Post image" />
+          </div>
+          <h2 class="title">{{ post.title }}</h2>
+          <div class="content">{{ post.content }}</div>
+          {% if post.file_url %}
+          <a href="{{ post.file_url }}" target="_blank">Download file</a>
+          {% endif %}
         </div>
+        {% endfor %}
       </div>
       <div class="menu-container">
         <nav>

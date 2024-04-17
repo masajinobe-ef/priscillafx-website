@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Pydantic schemas
 from pydantic import BaseModel
 
@@ -17,4 +19,4 @@ class BlogCreate(BaseModel):
     title: str
     content: str
     image_url: str
-    file_url: str
+    file_url: Optional[str] = None

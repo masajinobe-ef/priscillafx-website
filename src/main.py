@@ -1,6 +1,10 @@
+import ssl
+
 # FastAPI
-from fastapi.responses import HTMLResponse
-from fastapi import Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 # FastAPI Cache
 from fastapi_cache import FastAPICache
@@ -9,47 +13,57 @@ from fastapi_cache.backends.redis import RedisBackend
 # Routers depends
 from auth.router import router as router_auth
 from blog.router import router as router_blog
+from pages.router import router as router_pages
 
 # Redis
 from redis import asyncio as aioredis
-
-# Initialization app
-from initialization import app, templates
 
 # Config
 from config import REDIS_HOST, REDIS_PORT
 
 
-# Root page
-@app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    return templates.TemplateResponse(
-        "website/index.html", {"request": request}
-    )
+# Initialization FastAPI app
+app = FastAPI(title="PriscillaFX")
 
 
-# Pages
-@app.get("/{page_name}", response_class=HTMLResponse)
-async def read_item(request: Request, page_name: str):
-    return templates.TemplateResponse(
-        f"website/{page_name}.html", {"request": request}
-    )
+# App Favicon
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("static/icons/favicon.ico")
 
 
-# Admin-panel
-@app.get("/admin", response_class=HTMLResponse)
-async def admin_login(request: Request):
-    return templates.TemplateResponse("admin/login.html", {"request": request})
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-@app.get("/admin/menu", response_class=HTMLResponse)
-async def admin_menu(request: Request):
-    return templates.TemplateResponse("admin/menu.html", {"request": request})
+# Create SSL context
+ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+certfile = "cert/cert.pem"
+keyfile = "cert/key.pem"
 
 
 # Routers
 app.include_router(router_auth)
 app.include_router(router_blog)
+app.include_router(router_pages)
+
+
+# CORS middleware
+origins = ["http://localhost:5500"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
+    allow_headers=[
+        "Content-Type",
+        "Set-Cookie",
+        "Access-Control-Allow-Headers",
+        "Access-Control-Allow-Origin",
+        "Authorization",
+    ],
+)
 
 
 # Startup events

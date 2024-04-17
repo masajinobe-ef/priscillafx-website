@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 # FastAPI Cache
-from fastapi_cache.decorator import cache
+# from fastapi_cache.decorator import cache
 
 # SQLAlchemy
 from sqlalchemy import select, insert
@@ -19,9 +19,9 @@ from database import get_async_session
 router = APIRouter(prefix="/blog", tags=["Blog"])
 
 
-@router.get("/get_post")
+@router.get("/get_posts")
 # @cache(expire=60)
-async def get_blog_post(session: AsyncSession = Depends(get_async_session)):
+async def get_posts(session: AsyncSession = Depends(get_async_session)):
     try:
         query = select(BlogPost)
         result = await session.execute(query)
@@ -31,40 +31,48 @@ async def get_blog_post(session: AsyncSession = Depends(get_async_session)):
             raise HTTPException(
                 status_code=404,
                 detail={
-                    "status": "info",
+                    "status": "Info",
                     "data": None,
-                    "details": "no post found",
+                    "details": "No post found",
                 },
             )
-        return [row._asdict() for row in posts]
+        return {
+            "status": "Success",
+            "data": [row._asdict() for row in posts],
+            "details": None,
+        }
 
     except Exception:
         raise HTTPException(
             status_code=500,
             detail={
-                "status": "error",
+                "status": "Error",
                 "data": None,
-                "details": "server error",
+                "details": "Server error",
             },
         )
 
 
 @router.post("/add_post")
-async def add_blog_post(
+async def add_post(
     new_post: BlogCreate, session: AsyncSession = Depends(get_async_session)
 ):
     try:
-        stmt = insert(BlogPost).values(**new_post.model_dump())
-        await session.execute(stmt)
+        query = insert(BlogPost).values(**new_post.model_dump())
+        await session.execute(query)
         await session.commit()
-        return {"message": "Post added successfully"}
+        return {
+            "status": "Success",
+            "data": None,
+            "message": "Post added successfully",
+        }
 
     except Exception:
         raise HTTPException(
             status_code=500,
             detail={
-                "status": "error",
+                "status": "Error",
                 "data": None,
-                "details": "server error",
+                "details": "Server error",
             },
         )
