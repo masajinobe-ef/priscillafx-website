@@ -1,8 +1,8 @@
 import ssl
 
 # FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -11,7 +11,7 @@ from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 
 # Routers depends
-from auth.router import router as router_auth
+# from auth.router import router as router_auth
 from blog.router import router as router_blog
 from pages.router import router as router_pages
 
@@ -43,7 +43,7 @@ keyfile = "cert/key.pem"
 
 
 # Routers
-app.include_router(router_auth)
+# app.include_router(router_auth)
 app.include_router(router_blog)
 app.include_router(router_pages)
 
