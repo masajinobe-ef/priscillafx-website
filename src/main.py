@@ -1,4 +1,6 @@
 import ssl
+from colorama import Back, Fore, Style
+from contextlib import asynccontextmanager
 
 # FastAPI
 from fastapi import FastAPI
@@ -22,33 +24,72 @@ from redis import asyncio as aioredis
 from config import REDIS_HOST, REDIS_PORT, CERTFILE, KEYFILE
 
 
-# Initialization FastAPI app
-app = FastAPI(title="PriscillaFX")
-
-
-# App Favicon
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    return FileResponse("static/icons/favicon.ico")
-
-
-# Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-
 # Create SSL context
 ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 certfile = CERTFILE
 keyfile = KEYFILE
 
 
+# Startup events
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print(Fore.WHITE + Back.GREEN + "Application started" + Style.RESET_ALL)
+
+    # Files
+    try:
+        print(
+            Fore.WHITE
+            + Back.GREEN
+            + "Static Files connected"
+            + Style.RESET_ALL
+        )
+    except Exception as e:
+        print(Fore.WHITE + Back.RED + f"Static Files: {e}" + Style.RESET_ALL)
+
+    # Routers
+    try:
+        print(Fore.WHITE + Back.GREEN + "Routers started" + Style.RESET_ALL)
+    except Exception as e:
+        print(Fore.WHITE + Back.RED + f"Routers: {e}" + Style.RESET_ALL)
+
+    # Redis
+    try:
+        print(Fore.WHITE + Back.GREEN + "Redis started" + Style.RESET_ALL)
+    except Exception as e:
+        print(Fore.WHITE + Back.RED + f"Redis: {e}" + Style.RESET_ALL)
+
+    yield
+    print(Style.BRIGHT + Back.RED + "Application stopped" + Style.RESET_ALL)
+
+
+app = FastAPI(lifespan=lifespan, title="PriscillaFX")
+
+
+# Files
+async def files_startup():
+    # App Favicon
+    @app.get("/favicon.ico", include_in_schema=False)
+    async def favicon() -> FileResponse:
+        return FileResponse("static/icons/favicon.ico")
+
+    # Mount static files
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 # Routers
-# app.include_router(router_auth)
-app.include_router(router_blog)
-app.include_router(router_pages)
+async def routers_startup():
+    # app.include_router(router_auth)
+    app.include_router(router_blog)
+    app.include_router(router_pages)
 
 
-# CORS middleware
+# Redis
+async def redis_startup():
+    redis = aioredis.from_url(f"redis://{REDIS_HOST}:{REDIS_PORT}")
+    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+
+
+# CORS
 origins = [
     "http://localhost:5500",
     "http://localhost:8080",
@@ -67,25 +108,21 @@ app.add_middleware(
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin",
         "Authorization",
-    ],
+        ],
 )
 
 
-# Startup events
-@app.on_event("startup")
-async def startup():
-    redis = aioredis.from_url(f"redis://{REDIS_HOST}:{REDIS_PORT}")
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
-
-
 # Uvicorn
-# if __name__ == "__main__":
-#     import uvicorn
+if __name__ == "__main__":
+    import uvicorn
 
-#     uvicorn.run(
-#         "main:app",
-#         host="0.0.0.0",
-#         port=443,
-#         ssl_certfile=certfile,
-#         ssl_keyfile=keyfile,
-#     )
+    uvicorn.run(
+        "main:app",
+        host="127.0.0.1",
+        port=5500,
+        reload=True,
+        # host="0.0.0.0",
+        # port=443,
+        # ssl_certfile=certfile,
+        # ssl_keyfile=keyfile,
+    )

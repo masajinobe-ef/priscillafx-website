@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Enable/Disable SQL echo in console
-ECHO = os.environ.get("ECHO")
 
 # SSL
 CERTFILE = os.environ.get("CERTFILE")

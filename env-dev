@@ -1,3 +1,6 @@
+CERTFILE=cert/cert.pem
+KEYFILE=cert/key.pem
+
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=postgres

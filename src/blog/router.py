@@ -2,7 +2,7 @@ from typing import Optional
 from datetime import datetime
 
 # FastAPI
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Form
 
 # FastAPI Cache
 # from fastapi_cache.decorator import cache
@@ -58,11 +58,19 @@ current_date = datetime.now().strftime("%B %d, %Y at %H:%M")
 
 @router.post("/add_post")
 async def add_post(
-    request_body: BlogBase,
-    session: AsyncSession = Depends(get_async_session),
+    title: str = Form(...),
+    content: str = Form(...),
+    image_url: Optional[str] = Form(None),
+    file_url: Optional[str] = Form(None),
+    session: AsyncSession = Depends(get_async_session)
 ):
     try:
-        query = insert(Blog).values(**request_body.model_dump())
+        query = insert(Blog).values(
+            title=title,
+            content=content,
+            image_url=image_url,
+            file_url=file_url
+        )
         await session.exec(query)
         await session.commit()
         await session.refresh(Blog)
