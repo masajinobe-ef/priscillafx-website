@@ -11,9 +11,9 @@ current_date = datetime.now().strftime("%B %d, %Y at %H:%M")
 class BlogBase(SQLModel):
     title: str
     content: str
-    created_at: str
-    image_url: Optional[str]
-    file_url: Optional[str]
+    created_at: Optional[str] = None
+    image_url: Optional[str] = None
+    file_url: Optional[str] = None
 
 
 class Blog(BlogBase, table=True):

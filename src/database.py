@@ -1,11 +1,13 @@
 # SQLModel
-from sqlalchemy.ext.asyncio import AsyncEngine
-from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+# SQLAlchemy
+from sqlalchemy.ext.asyncio import AsyncEngine
+from sqlalchemy.orm import sessionmaker
+
 # Config
-from config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
+from config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME, ECHO
 
 
 # Database onnection string
@@ -13,7 +15,7 @@ DATABASE_URL = (
     f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
-engine = AsyncEngine(create_engine(DATABASE_URL, echo=False, future=True))
+engine = AsyncEngine(create_engine(DATABASE_URL, echo=ECHO, future=True))
 
 
 async def init_db():

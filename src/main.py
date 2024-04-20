@@ -19,7 +19,7 @@ from pages.router import router as router_pages
 from redis import asyncio as aioredis
 
 # Config
-from config import REDIS_HOST, REDIS_PORT
+from config import REDIS_HOST, REDIS_PORT, CERTFILE, KEYFILE
 
 
 # Initialization FastAPI app
@@ -38,8 +38,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Create SSL context
 ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-certfile = "cert/cert.pem"
-keyfile = "cert/key.pem"
+certfile = CERTFILE
+keyfile = KEYFILE
 
 
 # Routers
@@ -49,7 +49,12 @@ app.include_router(router_pages)
 
 
 # CORS middleware
-origins = ["http://localhost:5500"]
+origins = [
+    "http://localhost:5500",
+    "http://localhost:8080",
+    "http://localhost",
+    "https://localhost",
+]
 
 app.add_middleware(
     CORSMiddleware,

@@ -5,6 +5,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Enable/Disable SQL echo in console
+ECHO = os.environ.get("ECHO")
+
+# SSL
+CERTFILE = os.environ.get("CERTFILE")
+KEYFILE = os.environ.get("KEYFILE")
+
 # Database onnection string
 DB_HOST = os.environ.get("DB_HOST")
 DB_PORT = os.environ.get("DB_PORT")
