@@ -1,10 +1,7 @@
 import os
-
 from dotenv import load_dotenv
 
-
 load_dotenv()
-
 
 # SSL
 CERTFILE = os.environ.get("CERTFILE")

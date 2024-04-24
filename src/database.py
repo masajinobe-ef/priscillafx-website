@@ -15,7 +15,7 @@ DATABASE_URL = (
     f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
-engine = AsyncEngine(create_engine(DATABASE_URL, echo=False, future=True))
+engine = AsyncEngine(create_engine(DATABASE_URL, echo=True))
 
 
 async def init_db():

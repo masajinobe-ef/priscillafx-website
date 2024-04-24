@@ -35,25 +35,11 @@ keyfile = KEYFILE
 async def lifespan(app: FastAPI):
     print(Fore.WHITE + Back.GREEN + "Application started" + Style.RESET_ALL)
 
-    # Files
-    try:
-        print(
-            Fore.WHITE
-            + Back.GREEN
-            + "Static Files connected"
-            + Style.RESET_ALL
-        )
-    except Exception as e:
-        print(Fore.WHITE + Back.RED + f"Static Files: {e}" + Style.RESET_ALL)
-
-    # Routers
-    try:
-        print(Fore.WHITE + Back.GREEN + "Routers started" + Style.RESET_ALL)
-    except Exception as e:
-        print(Fore.WHITE + Back.RED + f"Routers: {e}" + Style.RESET_ALL)
-
     # Redis
     try:
+        redis = aioredis.from_url(f"redis://{REDIS_HOST}:{REDIS_PORT}")
+        FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+
         print(Fore.WHITE + Back.GREEN + "Redis started" + Style.RESET_ALL)
     except Exception as e:
         print(Fore.WHITE + Back.RED + f"Redis: {e}" + Style.RESET_ALL)
@@ -66,27 +52,19 @@ app = FastAPI(lifespan=lifespan, title="PriscillaFX")
 
 
 # Files
-async def files_startup():
-    # App Favicon
-    @app.get("/favicon.ico", include_in_schema=False)
-    async def favicon() -> FileResponse:
-        return FileResponse("static/icons/favicon.ico")
+# App Favicon
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon() -> FileResponse:
+    return FileResponse("static/icons/favicon.ico")
 
-    # Mount static files
-    app.mount("/static", StaticFiles(directory="static"), name="static")
+# Mount static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 # Routers
-async def routers_startup():
-    # app.include_router(router_auth)
-    app.include_router(router_blog)
-    app.include_router(router_pages)
-
-
-# Redis
-async def redis_startup():
-    redis = aioredis.from_url(f"redis://{REDIS_HOST}:{REDIS_PORT}")
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+# app.include_router(router_auth)
+app.include_router(router_blog)
+app.include_router(router_pages)
 
 
 # CORS
@@ -108,7 +86,7 @@ app.add_middleware(
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin",
         "Authorization",
-        ],
+    ],
 )
 
 
