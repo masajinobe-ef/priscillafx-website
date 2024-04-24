@@ -11,6 +11,7 @@ from sqlmodel import SQLModel
 
 # Models
 from src.blog.models import *
+from src.auth.models import *
 
 # Config
 from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS

@@ -1,4 +1,4 @@
-# from datetime import datetime
+# from datetime import datetime, timezone
 
 # # FastAPI Users
 # from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
@@ -15,7 +15,7 @@
 # )
 
 # # Database
-# from database import Base
+# from src.database import Base
 
 
 # class Role(Base):
@@ -33,7 +33,7 @@
 #     email = Column(String, nullable=False)
 #     username = Column(String, nullable=False)
 #     hashed_password = Column(String(length=1024), nullable=False)
-#     registered_at = Column(TIMESTAMP, default=datetime.utcnow())
+#     registered_at = Column(TIMESTAMP, default=datetime.now(timezone.utc))
 #     role_id = Column(Integer, ForeignKey(Role.id))
 #     is_active = Column(Boolean, default=True, nullable=False)
 #     is_superuser = Column(Boolean, default=False, nullable=False)
