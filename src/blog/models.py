@@ -1,25 +1,17 @@
-from typing import Optional
 from datetime import datetime
 
 # SQLModel
 from sqlmodel import SQLModel, Field
 
 
-current_date = datetime.now().strftime("%B %d, %Y at %H:%M")
+class Blog(SQLModel, table=True):
+    __tablename__ = "blog"
 
-
-class BlogBase(SQLModel):
+    id: int | None = Field(default=None, primary_key=True)
     title: str
     content: str
-    created_at: str
-    image_url: Optional[str]
-    file_url: Optional[str]
-
-
-class Blog(BlogBase, table=True):
-    id: int = Field(default=None, primary_key=True)
-    title: str = Field(default=None, nullable=False)
-    content: str = Field(default=None, nullable=False)
-    created_at: str = Field(default=current_date, nullable=False)
-    image_url: str = Field(default=None, nullable=True)
-    file_url: str = Field(default=None, nullable=True)
+    created_at: str = Field(
+        default=datetime.now().strftime("%B %d, %Y at %H:%M"), nullable=False
+    )
+    image_url: str | None = None
+    file_url: str | None = None

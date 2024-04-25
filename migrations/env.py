@@ -9,11 +9,15 @@ from sqlalchemy import engine_from_config, pool
 # SQLModel
 from sqlmodel import SQLModel
 
-# Models
-from src.blog.models import *
-
 # Config
 from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
+
+# Database
+from src.database import Base
+
+# Models
+from src.blog.models import *
+from src.auth.models import *
 
 
 # this is the Alembic Config object, which provides
@@ -36,7 +40,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = SQLModel.metadata
+target_metadata = [SQLModel.metadata, Base.metadata]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -61,7 +65,7 @@ def run_migrations_offline() -> None:
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
-        compare_type=True
+        compare_type=True,
     )
 
     with context.begin_transaction():
@@ -85,7 +89,7 @@ def run_migrations_online() -> None:
         context.configure(
             connection=connection,
             target_metadata=target_metadata,
-            compare_type=True
+            compare_type=True,
         )
 
         with context.begin_transaction():
