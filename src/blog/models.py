@@ -1,18 +1,25 @@
-from datetime import datetime, timezone
+from typing import Optional
+from datetime import datetime
 
-# SQLAlchemy
-from sqlalchemy import Integer, String, Column, TIMESTAMP
-
-# Database
-from database import Base
+# SQLModel
+from sqlmodel import SQLModel, Field
 
 
-class BlogPost(Base):
-    __tablename__ = "blog_post"
+current_date = datetime.now().strftime("%B %d, %Y at %H:%M")
 
-    id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    content = Column(String, nullable=False)
-    created_at = Column(TIMESTAMP, default=datetime.now(tz=timezone.utc))
-    image_url = Column(String, nullable=False)
-    file_url = Column(String, nullable=False)
+
+class BlogBase(SQLModel):
+    title: str
+    content: str
+    created_at: str
+    image_url: Optional[str]
+    file_url: Optional[str]
+
+
+class Blog(BlogBase, table=True):
+    id: int = Field(default=None, primary_key=True)
+    title: str = Field(default=None, nullable=False)
+    content: str = Field(default=None, nullable=False)
+    created_at: str = Field(default=current_date, nullable=False)
+    image_url: str = Field(default=None, nullable=True)
+    file_url: str = Field(default=None, nullable=True)
