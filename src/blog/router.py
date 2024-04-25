@@ -1,5 +1,5 @@
 # FastAPI
-from fastapi import APIRouter, HTTPException, Form
+from fastapi import APIRouter, HTTPException, Form, Depends
 
 # FastAPI Cache
 from fastapi_cache.decorator import cache
@@ -7,6 +7,10 @@ from fastapi_cache.decorator import cache
 # SQLModel
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
+
+# Auth depends
+from auth.config import current_superuser
+from auth.models import User
 
 # Models
 from blog.models import Blog
@@ -51,6 +55,7 @@ async def get_posts():
 
 @router.post("/add_post")
 async def add_post(
+    user: User = Depends(current_superuser),
     title: str = Form(),
     content: str = Form(),
     image_url: str = Form(None),
@@ -91,7 +96,9 @@ async def add_post(
 
 
 @router.post("/delete_post")
-async def delete_post(id: int = Form()):
+async def delete_post(
+    user: User = Depends(current_superuser), id: int = Form()
+):
     try:
         async with AsyncSession(engine) as session:
             statement = select(Blog).where(Blog.id == id)
