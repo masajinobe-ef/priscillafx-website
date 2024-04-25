@@ -1,7 +1,7 @@
 from typing import AsyncGenerator
 
 # Config
-from .config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
+from config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
 
 # SQLModel
 from sqlmodel import SQLModel, create_engine
