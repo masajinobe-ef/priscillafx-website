@@ -2,7 +2,7 @@
 from fastapi import APIRouter, HTTPException, Form, Depends
 
 # FastAPI Cache
-from fastapi_cache.decorator import cache
+# from fastapi_cache.decorator import cache
 
 # SQLModel
 from sqlmodel import select
@@ -23,7 +23,7 @@ router = APIRouter(prefix="/blog", tags=["Blog"])
 
 
 @router.get("/get_posts")
-@cache(expire=60)
+# @cache(expire=60)
 async def get_posts():
     try:
         async with AsyncSession(engine) as session:
