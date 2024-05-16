@@ -13,7 +13,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', path='/css/main/index.css') }}"
+      href="{{ url_for('static', path='/css/main/artists.css') }}"
     />
     <link
       rel="stylesheet"
@@ -26,22 +26,10 @@
       href="{{ url_for('static', path='/css/additional.css') }}"
     />
     <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico" />
-
-    <script
-      src="{{ url_for('static', path='/js/random-bg.js') }}"
-      defer
-    ></script>
   </head>
 
   <body>
     <header>
-      <h1>Priscilla Custom Effects</h1>
-      <a href="">
-        <img src="/static/img/logo.svg" alt="logo" class="logo" />
-      </a>
-    </header>
-
-    <main>
       <div class="menu-container">
         <nav>
           <ul>
@@ -57,10 +45,14 @@
               <a href="mods"><span class="icon" data-icon="mods"></span>Mods</a>
             </li>
             <li>
-              <a href="artists"><span class="icon" data-icon="artists"></span>Artists</a>
+              <a href="artists"
+                ><span class="icon" data-icon="artists"></span>Artists</a
+              >
             </li>
             <li>
-              <a href="faq"><span class="icon" data-icon="faq"></span>F.A.Q.</a>
+              <a href="faq"
+                ><span class="icon" data-icon="faq"></span>F.A.Q.</a
+              >
             </li>
             <li>
               <a href="about"
@@ -70,10 +62,40 @@
           </ul>
         </nav>
       </div>
+    </header>
+
+    <main>
+      <div class="info">
+        <ul>
+          <li>
+            <img src="/static/img/artists/01.png" alt="Toru Kitajima">
+            <p>Toru Kitajima</p>
+            <p>凛として時雨/TK from 凛として時雨</p>
+          </li>
+          <li>
+            <img src="/static/img/artists/01.png" alt="Toru Kitajima">
+            <p>Toru Kitajima</p>
+            <p>凛として時雨/TK from 凛として時雨</p>
+          </li>
+          <li>
+            <img src="/static/img/artists/01.png" alt="Toru Kitajima">
+            <p>Toru Kitajima</p>
+            <p>凛として時雨/TK from 凛として時雨</p>
+          </li>
+          <li>
+            <img src="/static/img/artists/01.png" alt="Toru Kitajima">
+            <p>Toru Kitajima</p>
+            <p>凛として時雨/TK from 凛として時雨</p>
+          </li>
+        </ul>
+      </div>
     </main>
 
     <footer>
-      <p>Contact us at priscilla.effects@gmail.com</p>
+      <p>
+        Pedals... or something like this🌌<br />
+        ・Custom Effects ・Modifications ・Hi-End Musical Accessories ・Resale
+      </p>
     </footer>
   </body>
 </html>

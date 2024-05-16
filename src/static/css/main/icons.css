@@ -20,6 +20,10 @@
   background-image: url("/static/icons/icon-mods.svg");
 }
 
+.icon[data-icon="artists"] {
+  background-image: url("/static/icons/icon-artists.svg");
+}
+
 .icon[data-icon="faq"] {
   background-image: url("/static/icons/icon-faq.svg");
 }

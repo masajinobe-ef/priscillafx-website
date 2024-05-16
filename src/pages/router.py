@@ -20,6 +20,13 @@ async def blog_page(request: Request):
     return templates.TemplateResponse("pages/blog.html", {"request": request})
 
 
+@router.get("/artists", response_class=HTMLResponse)
+async def artists_page(request: Request):
+    return templates.TemplateResponse(
+        "pages/artists.html", {"request": request}
+    )
+
+
 @router.get("/faq", response_class=HTMLResponse)
 async def faq_page(request: Request):
     return templates.TemplateResponse("pages/faq.html", {"request": request})
