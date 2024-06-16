@@ -1,16 +1,17 @@
 body {
   font-family: JetBrainsMono, sans-serif;
-  font-size: 2em;
-  color: white;
-  background: url("/static/img/bg/bg6.jpg");
-  /* no-repeat center center/cover */
+  font-size: 1.2em;
+  color: #fff;
+  background: url("/static/img/bg/bg6.jpg") no-repeat center center fixed;
+  background-size: cover;
   background-color: #000;
   margin: 0;
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 
   &::-webkit-scrollbar {
     width: 0 !important;
@@ -18,61 +19,130 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
 
   h1 {
     text-shadow: 4px 4px 4px #000;
+    margin: 0;
   }
 
   .logo {
-    width: 256px;
+    width: 100px;
+    height: auto;
+    filter: invert(1); /* Инверсия цвета иконки */
   }
 }
 
 main {
-  flex-grow: 1;
+  position: relative;
+  margin-top: 80px; /* Space for the fixed header */
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+  .post {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: calc(100% - 40px);
+    max-width: 800px; /* Увеличение ширины поста до 800px */
+    min-width: 300px; /* Минимальная ширина поста */
+  }
+
+  .created-at {
+    color: #999;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+  }
+
+  .image {
+    object-fit: cover;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    color: #fff;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    color: #ccc;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: inline-block;
+    margin-top: 10px;
+    text-shadow: 2px 2px 2px #000;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.menu-container {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
 
-  .icon[data-icon] {
-    filter: invert(1);
-  }
+  nav {
+    text-align: left;
+    padding: 20px;
 
-  li:hover .icon[data-icon] {
-    filter: invert(0);
-  }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-  .menu-container {
-    nav {
-      text-align: left;
-      padding: 20px;
+      li {
+        margin-bottom: 10px;
+        cursor: pointer;
 
-      ul {
-        list-style-type: none;
-        padding: 0;
-        background-color: #000;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
 
-        li {
-          margin-bottom: 10px;
-          cursor: pointer;
+        a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 1.4em;
+          display: block;
+          padding: 10px 20px;
+          filter: invert(1); /* Инверсия цвета значков */
 
           &:hover {
-            background-color: #fff;
-          }
-
-          a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.4em;
-            display: block;
-
-            &:hover {
-              text-shadow: #000 3px 3px;
-            }
+            text-shadow: #000 3px 3px;
           }
         }
       }
@@ -82,7 +152,7 @@ main {
 
 footer {
   text-align: center;
-  margin-top: auto;
   padding: 20px;
   text-shadow: 4px 4px 4px #000;
+  background: rgba(0, 0, 0, 0.7);
 }

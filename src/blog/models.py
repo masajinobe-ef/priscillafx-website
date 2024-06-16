@@ -5,7 +5,7 @@ from sqlmodel import SQLModel, Field
 
 
 class Blog(SQLModel, table=True):
-    __tablename__ = "blog"
+    __tablename__ = "Blog"
 
     id: int | None = Field(default=None, primary_key=True)
     title: str

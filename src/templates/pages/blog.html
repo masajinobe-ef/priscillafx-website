@@ -32,14 +32,13 @@
     <header>
       <h1>Blog</h1>
     </header>
-
     <main>
       <div class="posts-container">
-        {% for post in posts %}
+        {% if posts %} {% for post in posts %}
         <div class="post">
           <div class="created-at">{{ post.created_at }}</div>
           <div>
-            <img class="image" src="{{ post.image_url }}" alt="Post image" />
+            <img class="image" src="{{ post.image_url }}" alt="image" />
           </div>
           <h2 class="title">{{ post.title }}</h2>
           <div class="content">{{ post.content }}</div>
@@ -47,34 +46,32 @@
           <a href="{{ post.file_url }}" target="_blank">Download file</a>
           {% endif %}
         </div>
-        {% endfor %}
+        {% endfor %} {% else %}
+        <p>No posts found</p>
+        {% endif %}
       </div>
       <div class="menu-container">
         <nav>
           <ul>
             <li>
-              <a href="blog"><span class="icon" data-icon="blog"></span>Blog</a>
+              <a href="blog"><span class="icon" data-icon="blog"></span></a>
             </li>
             <li>
-              <a href="custom"
-                ><span class="icon" data-icon="custom"></span>Custom</a
-              >
+              <a href="custom"><span class="icon" data-icon="custom"></span></a>
             </li>
             <li>
-              <a href="mods"><span class="icon" data-icon="mods"></span>Mods</a>
+              <a href="mods"><span class="icon" data-icon="mods"></span></a>
             </li>
             <li>
               <a href="artists"
-                ><span class="icon" data-icon="artists"></span>Artists</a
-              >
+                ><span class="icon" data-icon="artists"></span
+              ></a>
             </li>
             <li>
-              <a href="faq"><span class="icon" data-icon="faq"></span>F.A.Q.</a>
+              <a href="faq"><span class="icon" data-icon="faq"></span></a>
             </li>
             <li>
-              <a href="about"
-                ><span class="icon" data-icon="about"></span>About</a
-              >
+              <a href="about"><span class="icon" data-icon="about"></span></a>
             </li>
           </ul>
         </nav>

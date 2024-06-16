@@ -1,8 +1,8 @@
+import logging
+
 # FastAPI
 from fastapi import APIRouter, HTTPException, Form, Depends
-
-# FastAPI Cache
-# from fastapi_cache.decorator import cache
+from fastapi.templating import Jinja2Templates
 
 # SQLModel
 from sqlmodel import select
@@ -19,11 +19,14 @@ from blog.models import Blog
 from database import engine
 
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
 router = APIRouter(prefix="/blog", tags=["Blog"])
 
 
 @router.get("/get_posts")
-# @cache(expire=60)
 async def get_posts():
     try:
         async with AsyncSession(engine) as session:

@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 
 # FastAPI Users
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
@@ -19,7 +19,7 @@ from database import Base
 
 
 class Role(Base):
-    __tablename__ = "role"
+    __tablename__ = "Role"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
@@ -27,7 +27,7 @@ class Role(Base):
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
-    __tablename__ = "user"
+    __tablename__ = "User"
 
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)

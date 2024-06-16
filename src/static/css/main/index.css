@@ -1,86 +1,111 @@
+/* Reset and Base Styles */
 body {
   font-family: JetBrainsMono, sans-serif;
-  font-size: 2em;
-  color: white;
+  font-size: 1.2em;
+  color: #fff;
+  background: url("/static/img/bg/bg6.jpg") no-repeat center center fixed;
+  background-size: cover;
   background-color: #000;
   margin: 0;
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   min-height: 100vh;
   overflow-x: hidden;
-
-  &::-webkit-scrollbar {
-    width: 0 !important;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-
-  h1 {
-    text-shadow: 4px 4px 4px #000;
-  }
-
-  .logo {
-    width: 256px;
-  }
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 main {
-  flex-grow: 1;
+  position: relative;
+  margin-top: 80px; /* Space for the fixed header */
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-container {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
-
-  .icon[data-icon] {
-    filter: invert(0);
-  }
-
-  li:hover .icon[data-icon] {
-    filter: invert(1);
-  }
-
-  .menu-container {
-    nav {
-      text-align: left;
-      padding: 20px;
-
-      ul {
-        list-style-type: none;
-        padding: 0;
-        background-color: #fff;
-
-        li {
-          margin-bottom: 10px;
-          cursor: pointer;
-
-          &:hover {
-            background-color: #000;
-          }
-
-          a {
-            text-decoration: none;
-            color: #000;
-            font-size: 1.4em;
-            display: block;
-
-            &:hover {
-              color: #fff;
-            }
-          }
-        }
-      }
-    }
-  }
+  align-items: center;
 }
 
 footer {
   text-align: center;
-  margin-top: auto;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Header Styles */
+header h1 {
+  text-shadow: 4px 4px 4px #000;
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  filter: invert(0); /* Inverted color for the logo */
+}
+
+.icon {
+  width: 100px;
+  height: auto;
+  filter: invert(1); /* Inverted color for the logo */
+}
+
+/* Menu Styles */
+nav {
+  text-align: left;
+  padding: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+nav ul li {
+  margin-bottom: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.4em;
+  display: block;
+  padding: 10px 20px;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  text-shadow: 2px 2px 2px #000;
+}
+
+/* Footer Styles */
+footer p {
+  margin: 0;
   text-shadow: 4px 4px 4px #000;
 }
