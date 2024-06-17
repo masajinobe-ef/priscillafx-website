@@ -38,12 +38,16 @@
         <div class="post">
           <div class="created-at">{{ post.created_at }}</div>
           <div>
-            <img class="image" src="{{ post.image_url }}" alt="image" />
+            <a href="{{ post.image_url }}" target="_blank"
+              ><img class="image" src="{{ post.image_url }}" alt="image"
+            /></a>
           </div>
           <h2 class="title">{{ post.title }}</h2>
           <div class="content">{{ post.content }}</div>
           {% if post.file_url %}
-          <a href="{{ post.file_url }}" target="_blank">Download file</a>
+          <a href="{{ post.file_url }}" target="_blank"
+            >Download<span class="icon" data-icon="download"></span
+          ></a>
           {% endif %}
         </div>
         {% endfor %} {% else %}
@@ -53,6 +57,9 @@
       <div class="menu-container">
         <nav>
           <ul>
+            <li>
+              <a href="/"><span class="icon" data-icon="home"></span></a>
+            </li>
             <li>
               <a href="blog"><span class="icon" data-icon="blog"></span></a>
             </li>

@@ -1,65 +1,54 @@
 body {
+  /* Font */
   font-family: JetBrainsMono, sans-serif;
-  font-size: 1.2em;
+  font-size: 1.6em;
+
+  /* Colors */
+  background-color: #000;
   color: #fff;
+
+  /* Background image */
   background: url("/static/img/bg/bg6.jpg") no-repeat center center fixed;
   background-size: cover;
-  background-color: #000;
-  margin: 0;
+
+  /* Positioning */
   height: 100vh;
   min-height: 100vh;
-  overflow-x: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
 
-  &::-webkit-scrollbar {
-    width: 0 !important;
-  }
+  /* Disable horizontal scoll */
+  overflow-x: hidden;
 }
 
 header {
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
+  justify-content: center;
+
+  flex-direction: row;
+  margin: 20px;
 
   h1 {
-    text-shadow: 4px 4px 4px #000;
     margin: 0;
-  }
-
-  .logo {
-    width: 100px;
-    height: auto;
-    filter: invert(1); /* Инверсия цвета иконки */
+    font-size: 1.8em;
+    text-shadow: 4px 4px 4px #000;
   }
 }
 
 main {
-  position: relative;
-  margin-top: 80px; /* Space for the fixed header */
-  padding: 20px;
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
 
   .post {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: calc(100% - 40px);
-    max-width: 800px; /* Увеличение ширины поста до 800px */
-    min-width: 300px; /* Минимальная ширина поста */
+    max-width: 720px;
+    min-width: 480px;
   }
 
   .created-at {
@@ -71,37 +60,36 @@ main {
   .image {
     object-fit: cover;
     width: 100%;
-    position: relative;
-    background-size: cover;
-    background-position: center;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 0px;
   }
 
   .title {
     color: #fff;
-    font-size: 1.8em;
+    font-size: 1.4em;
+    margin-top: 10px;
     margin-bottom: 10px;
+    word-break: break-word;
   }
 
   .content {
     color: #ccc;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.6;
-    margin-bottom: 10px;
+    word-break: break-word;
   }
 
   a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.2em;
-    display: inline-block;
-    margin-top: 10px;
-    text-shadow: 2px 2px 2px #000;
+    font-size: 0.8em;
+    margin: 0px;
+    
 
-    &:hover {
-      text-decoration: underline;
-    }
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
   }
 }
 
@@ -130,7 +118,7 @@ main {
         cursor: pointer;
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: rgba(66, 39, 119, 1);
         }
 
         a {
@@ -139,10 +127,16 @@ main {
           font-size: 1.4em;
           display: block;
           padding: 10px 20px;
-          filter: invert(1); /* Инверсия цвета значков */
+
+          /* Invert icon color */
+          .icon {
+            margin: 0px;
+            filter: invert(1); /* Инверсия цвета значков */
+          }
 
           &:hover {
-            text-shadow: #000 3px 3px;
+            background-color: rgba(66, 39, 119, 1);
+            border-radius: 10px;
           }
         }
       }
