@@ -7,10 +7,6 @@ body {
   background-color: #000;
   color: #fff;
 
-  /* Background image */
-  background: url("/static/img/bg/bg2.jpg") no-repeat center center fixed;
-  background-size: cover;
-
   /* Positioning */
   height: 100vh;
   min-height: 100vh;
@@ -33,7 +29,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   flex-direction: row;
-  
+
   /* Logo */
   .logo {
     width: 190px;
