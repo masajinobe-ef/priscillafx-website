@@ -1,3 +1,6 @@
+// This code is licensed under the GPL-3.0 license
+// Written by masajinobe-ef
+
 document.addEventListener("DOMContentLoaded", function () {
   // Музыка
   var audio = new Audio("/static/audio/BoT_bg.mp3");

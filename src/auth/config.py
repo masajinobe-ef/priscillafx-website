@@ -1,3 +1,6 @@
+# This code is licensed under the GPL-3.0 license
+# Written by masajinobe-ef
+
 # FastAPI Users
 from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import (

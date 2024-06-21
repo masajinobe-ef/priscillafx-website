@@ -1,3 +1,6 @@
+# This code is licensed under the GPL-3.0 license
+# Written by masajinobe-ef
+
 # FastAPI
 from fastapi import Depends
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
