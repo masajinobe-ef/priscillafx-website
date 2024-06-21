@@ -1,5 +1,9 @@
 # Official website of Priscilla FX
 
+<p align="center">
+    <img src="pics/1.png" alt="1"/>
+</p>
+
 [![License: GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg?style=for-the-badge)](LICENSE "License")
 [![Donate](https://img.shields.io/badge/_-Donate-red.svg?logo=githubsponsors&labelColor=555555&style=for-the-badge)](https://boosty.to/priscilla-custom-effects "Donate")
 [![Stars](https://img.shields.io/github/stars/masajinobe-ef/priscillafx-website?color=fff&labelColor=0C0E0F&style=for-the-badge)](https://boosty.to/priscilla-custom-effects "Stars")
@@ -36,7 +40,6 @@
 Имеет систему миграции базы данных с помощью **Alembic**. Это позволяет легко управлять изменениями схемы базы данных.
 
 <p align="center">
-    <img src="pics/1.png" alt="1"/>
     <img src="pics/2.png" alt="2"/>
     <img src="pics/3.png" alt="3"/>
     <img src="pics/4.png" alt="4"/>
