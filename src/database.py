@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 # Database onnection string
 DATABASE_URL = (
+    # "sqlite+aiosqlite:///./priscillafx.db"
     f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
@@ -27,9 +28,9 @@ engine = AsyncEngine(create_engine(DATABASE_URL, echo=True))
 
 async def init_db():
     async with engine.begin() as conn:
-        # await conn.run_sync(SQLModel.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
         await conn.run_sync(SQLModel.metadata.create_all)
+        # await conn.run_sync(SQLModel.metadata.drop_all)
 
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:

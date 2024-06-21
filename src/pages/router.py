@@ -5,8 +5,8 @@ from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-#FastAPI Cache
-#from fastapi_cache.decorator import cache
+# FastAPI Cache
+# from fastapi_cache.decorator import cache
 
 # SQLModel
 from sqlmodel import select
@@ -35,7 +35,7 @@ async def read_root(request: Request):
 
 # Pages
 @router.get("/blog", response_class=HTMLResponse)
-#@cache(expire=60)
+# @cache(expire=60)
 async def show_blog(request: Request):
     try:
         async with AsyncSession(engine) as session:
@@ -74,14 +74,3 @@ async def show_faq(request: Request):
 @router.get("/about", response_class=HTMLResponse)
 async def show_about(request: Request):
     return templates.TemplateResponse("pages/about.html", {"request": request})
-
-
-# Admin-panel
-@router.get("/admin", response_class=HTMLResponse)
-async def show_admin(request: Request):
-    return templates.TemplateResponse("admin/login.html", {"request": request})
-
-
-@router.get("/admin/menu", response_class=HTMLResponse)
-async def show_admin_menu(request: Request):
-    return templates.TemplateResponse("admin/menu.html", {"request": request})

@@ -8,7 +8,8 @@ body {
   color: #fff;
 
   /* Background image */
-  background: url("/static/img/bg/bg6.jpg") no-repeat center center fixed;
+  background: url("/static/img/background/bg6.jpg") no-repeat center center
+    fixed;
   background-size: cover;
 
   /* Positioning */
@@ -84,7 +85,6 @@ main {
     text-decoration: none;
     font-size: 0.8em;
     margin: 0px;
-    
 
     display: flex;
     justify-content: flex-end;

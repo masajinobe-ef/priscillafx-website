@@ -2,7 +2,6 @@ import logging
 
 # FastAPI
 from fastapi import APIRouter, HTTPException, Form, Depends
-from fastapi.templating import Jinja2Templates
 
 # SQLModel
 from sqlmodel import select
