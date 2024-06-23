@@ -44,8 +44,8 @@ async def lifespan(app: FastAPI):
     yield
 
 
+# FastAPI initialize
 app = FastAPI(lifespan=lifespan, title="PriscillaFX")
-
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -63,7 +63,6 @@ app.include_router(router_blog)
 app.include_router(router_pages)
 app.include_router(router_tasks)
 
-
 # CORS
 origins = [
     "http://localhost:5500",
@@ -71,7 +70,6 @@ origins = [
     "http://localhost",
     "https://localhost",
 ]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
