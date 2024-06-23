@@ -1,8 +1,6 @@
 # This code is licensed under the GPL-3.0 license
 # Written by masajinobe-ef
 
-import logging
-
 # FastAPI
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import HTMLResponse
@@ -20,10 +18,6 @@ from blog.models import Blog
 
 # Database
 from database import engine
-
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 router = APIRouter(tags=["Pages"])
@@ -50,15 +44,9 @@ async def show_blog(request: Request):
                 "pages/blog.html", {"request": request, "posts": posts}
             )
 
-    except Exception as e:
-        logger.error(f"Error fetching posts: {e}", exc_info=True)
-        raise HTTPException(
-            status_code=500,
-            detail={
-                "status": "Error",
-                "data": None,
-                "details": "Server-side error",
-            },
+    except Exception:
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
         )
 
 

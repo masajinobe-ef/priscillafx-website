@@ -1,0 +1,112 @@
+body {
+  /* Font */
+  font-family: JetBrainsMono, sans-serif;
+  font-size: 1.6em;
+
+  /* Colors */
+  background-color: #000;
+  color: #fff;
+
+  /* Background image */
+  background: url("/static/img/background/bg7.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+
+  /* Positioning */
+  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /* Disable horizontal scoll */
+  overflow-x: hidden;
+
+  /* Disable vertical scoll bar */
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+}
+
+header {
+  /* Positioning */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+
+  /* Logo */
+  .logo {
+    width: 190px;
+  }
+}
+
+main {
+  /* Positioning */
+  flex: 1;
+
+  /* Menu */
+  .menu-container {
+    /* Positioning */
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    /* List */
+    nav {
+      /* Positioning */
+      margin-right: 20px;
+
+      /* List */
+      ul {
+        /* Positioning */
+        padding: 0;
+
+        /* List style */
+        list-style-type: none;
+        background-color: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+
+        /* List unit */
+        a {
+          /* Positioning */
+          display: block;
+          padding: 10px 20px;
+
+          /* List unit style */
+          text-decoration: none;
+          color: #fff;
+
+          /* Invert icon color */
+          .icon {
+            filter: invert(1);
+          }
+
+          /* Hover style */
+          &:hover {
+            background-color: rgba(66, 39, 119, 1);
+            text-shadow: 4px 4px 4px #000;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  /* Positioning */
+  text-align: center;
+  margin-bottom: 20px;
+
+  /* Text style */
+  p {
+    font-size: 1em;
+    text-shadow: 4px 4px 4px #000;
+  }
+}

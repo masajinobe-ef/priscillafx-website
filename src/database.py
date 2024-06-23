@@ -30,10 +30,13 @@ engine = AsyncEngine(create_engine(DATABASE_URL, echo=True))
 
 
 async def init_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-        await conn.run_sync(SQLModel.metadata.create_all)
-        # await conn.run_sync(SQLModel.metadata.drop_all)
+    try:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+            await conn.run_sync(SQLModel.metadata.create_all)
+            # await conn.run_sync(SQLModel.metadata.drop_all)
+    except ConnectionRefusedError as e:
+        print(f"Error connecting to the database: {e}")
 
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
