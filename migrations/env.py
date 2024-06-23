@@ -19,8 +19,8 @@ from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
 from src.database import Base
 
 # Models
-from src.blog.models import *
-from src.auth.models import *
+from src.blog.models import *  # noqa: F403
+from src.auth.models import *  # noqa: F403
 
 
 # this is the Alembic Config object, which provides

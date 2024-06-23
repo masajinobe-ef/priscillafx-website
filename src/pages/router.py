@@ -2,7 +2,7 @@
 # Written by masajinobe-ef
 
 # FastAPI
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -27,7 +27,15 @@ templates = Jinja2Templates(directory="templates")
 # Root page
 @router.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("pages/index.html", {"request": request})
+    try:
+        return templates.TemplateResponse(
+            "pages/index.html", {"request": request}
+        )
+
+    except Exception:
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
+        )
 
 
 # Pages
@@ -52,16 +60,38 @@ async def show_blog(request: Request):
 
 @router.get("/artists", response_class=HTMLResponse)
 async def show_artists(request: Request):
-    return templates.TemplateResponse(
-        "pages/artists.html", {"request": request}
-    )
+    try:
+        return templates.TemplateResponse(
+            "pages/artists.html", {"request": request}
+        )
+
+    except Exception:
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
+        )
 
 
 @router.get("/faq", response_class=HTMLResponse)
 async def show_faq(request: Request):
-    return templates.TemplateResponse("pages/faq.html", {"request": request})
+    try:
+        return templates.TemplateResponse(
+            "pages/faq.html", {"request": request}
+        )
+
+    except Exception:
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
+        )
 
 
 @router.get("/about", response_class=HTMLResponse)
 async def show_about(request: Request):
-    return templates.TemplateResponse("pages/about.html", {"request": request})
+    try:
+        return templates.TemplateResponse(
+            "pages/about.html", {"request": request}
+        )
+
+    except Exception:
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
+        )
