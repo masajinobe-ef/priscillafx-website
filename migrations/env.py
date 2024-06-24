@@ -1,5 +1,6 @@
-# This code is licensed under the GPL-3.0 license
-# Written by masajinobe-ef
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
 
 from logging.config import fileConfig
 
@@ -21,6 +22,8 @@ from src.database import Base
 # Models
 from src.blog.models import *  # noqa: F403
 from src.auth.models import *  # noqa: F403
+from src.artists.models import *  # noqa: F403
+from src.custom.models import *  # noqa: F403
 
 
 # this is the Alembic Config object, which provides

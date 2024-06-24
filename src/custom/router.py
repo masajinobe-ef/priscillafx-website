@@ -17,37 +17,37 @@ from auth.config import current_superuser
 from auth.models import User
 
 # Models
-from blog.models import Blog
+from custom.models import Custom
 
 # Database
 from database import async_engine
 
 
-router = APIRouter(prefix="/blog", tags=["Blog"])
+router = APIRouter(prefix="/custom", tags=["Custom"])
 
 
-@router.get("/get_posts")
-@cache(expire=60, namespace="all_posts")
-async def get_posts():
+@router.get("/get_custom")
+@cache(expire=60, namespace="all_custom")
+async def get_custom():
     try:
         async with AsyncSession(async_engine) as session:
-            statement = select(Blog)
+            statement = select(Custom)
             results = await session.exec(statement)
-            posts = [post for post in results]
-            if not posts:
+            customs = [custom for custom in results]
+            if not customs:
                 return {
                     "status": "Info",
                     "data": None,
-                    "details": "No posts found",
+                    "details": "No custom found",
                 }
             return {
                 "status": "Success",
-                "data": posts,
-                "details": "Posts found",
+                "data": customs,
+                "details": "Custom found",
             }
 
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -58,39 +58,39 @@ async def get_posts():
         )
 
 
-@router.post("/add_post")
-async def add_post(
+@router.post("/add_custom")
+async def add_custom(
     user: User = Depends(current_superuser),
-    title: str = Form(),
-    content: str = Form(),
-    image_url: str = Form(None),
-    file_url: str = Form(None),
+    name: str = Form(),
+    description: str = Form(),
+    price: str = Form(),
+    image_url: str = Form(),
 ):
-    new_post = Blog(
-        title=title, content=content, image_url=image_url, file_url=file_url
+    new_custom = Custom(
+        name=name, description=description, price=price, image_url=image_url
     )
 
     try:
         async with AsyncSession(async_engine) as session:
-            session.add(new_post)
+            session.add(new_custom)
 
             await session.commit()
-            await session.refresh(new_post)
+            await session.refresh(new_custom)
 
-            if new_post.id is not None:
+            if new_custom.id is not None:
                 return {
                     "status": "Success",
-                    "data": {"id": new_post.id},
-                    "message": "Post added successfully",
+                    "data": {"id": new_custom.id},
+                    "message": "Custom added successfully",
                 }
             return {
                 "status": "Error",
                 "data": None,
-                "message": "Post has not been added",
+                "message": "Custom has not been added",
             }
 
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -101,33 +101,33 @@ async def add_post(
         )
 
 
-@router.post("/delete_post")
-async def delete_post(
+@router.post("/delete_custom")
+async def delete_custom(
     user: User = Depends(current_superuser), id: int = Form()
 ):
     try:
         async with AsyncSession(async_engine) as session:
-            statement = select(Blog).where(Blog.id == id)
+            statement = select(Custom).where(Custom.id == id)
             results = await session.exec(statement)
-            blog = results.one()
+            artist = results.one()
 
-            await session.delete(blog)
+            await session.delete(artist)
             await session.commit()
 
-            if blog is None:
+            if artist is None:
                 return {
                     "status": "Info",
                     "data": None,
-                    "details": "No post for delete",
+                    "details": "No custom for delete",
                 }
             return {
                 "status": "Success",
-                "data": blog,
-                "details": "Post was deleted",
+                "data": artist,
+                "details": "Custom was deleted",
             }
 
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
         raise HTTPException(
             status_code=500,
             detail={

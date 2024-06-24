@@ -1,5 +1,6 @@
-# This code is licensed under the GPL-3.0 license
-# Written by masajinobe-ef
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
 
 from contextlib import asynccontextmanager
 
@@ -22,6 +23,8 @@ from config import REDIS_HOST, REDIS_PORT
 # Routers depends
 from auth.router import router as router_auth
 from blog.router import router as router_blog
+from custom.router import router as router_custom
+from artists.router import router as router_artists
 from pages.router import router as router_pages
 from tasks.router import router as router_tasks
 
@@ -45,7 +48,12 @@ async def lifespan(app: FastAPI):
 
 
 # FastAPI initialize
-app = FastAPI(lifespan=lifespan, title="PriscillaFX")
+app = FastAPI(
+    lifespan=lifespan,
+    title="PriscillaFX",
+    swagger_ui_parameters={"syntaxHighlight.theme": "obsidian"},
+    redoc_url=None,
+)
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -60,6 +68,8 @@ async def favicon() -> FileResponse:
 # Routers
 app.include_router(router_auth)
 app.include_router(router_blog)
+app.include_router(router_custom)
+app.include_router(router_artists)
 app.include_router(router_pages)
 app.include_router(router_tasks)
 

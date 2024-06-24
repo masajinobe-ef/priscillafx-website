@@ -1,13 +1,11 @@
-# This code is licensed under the GPL-3.0 license
-# Written by masajinobe-ef
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
 
 # FastAPI
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
-# FastAPI Cache
-# from fastapi_cache.decorator import cache
 
 # SQLModel
 from sqlmodel import select
@@ -15,9 +13,11 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 # Models
 from blog.models import Blog
+from custom.models import Custom
+from artists.models import Artists
 
 # Database
-from database import engine
+from database import async_engine
 
 
 router = APIRouter(tags=["Pages"])
@@ -32,7 +32,8 @@ async def read_root(request: Request):
             "pages/index.html", {"request": request}
         )
 
-    except Exception:
+    except Exception as e:
+        print(f"Error: {e}")
         return templates.TemplateResponse(
             "pages/error.html", {"request": request}
         )
@@ -40,10 +41,9 @@ async def read_root(request: Request):
 
 # Pages
 @router.get("/blog", response_class=HTMLResponse)
-# @cache(expire=60)
 async def show_blog(request: Request):
     try:
-        async with AsyncSession(engine) as session:
+        async with AsyncSession(async_engine) as session:
             statement = select(Blog)
             results = await session.exec(statement)
             posts = results.all()
@@ -52,7 +52,41 @@ async def show_blog(request: Request):
                 "pages/blog.html", {"request": request, "posts": posts}
             )
 
-    except Exception:
+    except Exception as e:
+        print(f"Error: {e}")
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
+        )
+
+
+@router.get("/custom", response_class=HTMLResponse)
+async def show_custom(request: Request):
+    try:
+        async with AsyncSession(async_engine) as session:
+            statement = select(Custom)
+            results = await session.exec(statement)
+            customs = results.all()
+
+            return templates.TemplateResponse(
+                "pages/custom.html", {"request": request, "customs": customs}
+            )
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return templates.TemplateResponse(
+            "pages/error.html", {"request": request}
+        )
+
+
+@router.get("/mods", response_class=HTMLResponse)
+async def show_mods(request: Request):
+    try:
+        return templates.TemplateResponse(
+            "pages/mods.html", {"request": request}
+        )
+
+    except Exception as e:
+        print(f"Error: {e}")
         return templates.TemplateResponse(
             "pages/error.html", {"request": request}
         )
@@ -61,11 +95,17 @@ async def show_blog(request: Request):
 @router.get("/artists", response_class=HTMLResponse)
 async def show_artists(request: Request):
     try:
-        return templates.TemplateResponse(
-            "pages/artists.html", {"request": request}
-        )
+        async with AsyncSession(async_engine) as session:
+            statement = select(Artists)
+            results = await session.exec(statement)
+            artists = results.all()
 
-    except Exception:
+            return templates.TemplateResponse(
+                "pages/artists.html", {"request": request, "artists": artists}
+            )
+
+    except Exception as e:
+        print(f"Error: {e}")
         return templates.TemplateResponse(
             "pages/error.html", {"request": request}
         )
@@ -78,7 +118,8 @@ async def show_faq(request: Request):
             "pages/faq.html", {"request": request}
         )
 
-    except Exception:
+    except Exception as e:
+        print(f"Error: {e}")
         return templates.TemplateResponse(
             "pages/error.html", {"request": request}
         )
@@ -91,7 +132,8 @@ async def show_about(request: Request):
             "pages/about.html", {"request": request}
         )
 
-    except Exception:
+    except Exception as e:
+        print(f"Error: {e}")
         return templates.TemplateResponse(
             "pages/error.html", {"request": request}
         )

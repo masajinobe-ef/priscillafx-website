@@ -8,7 +8,7 @@ body {
   color: #fff;
 
   /* Background image */
-  background: url("/static/img/background/bg6.jpg") no-repeat center center
+  background: url("/static/img/background/bg4.jpg") no-repeat center center
     fixed;
   background-size: cover;
 
@@ -43,20 +43,14 @@ main {
   justify-content: center;
   align-items: center;
 
-  .posts-container {
-    .post {
+  .custom-container {
+    .custom {
       background-color: rgba(0, 0, 0, 0.8);
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 10px;
       max-width: 720px;
       min-width: 480px;
-    }
-
-    .created-at {
-      color: #999;
-      font-size: 0.8em;
-      margin-bottom: 10px;
     }
 
     .image {
@@ -66,7 +60,7 @@ main {
       margin: 0px;
     }
 
-    .title {
+    .name {
       color: #fff;
       font-size: 1.4em;
       margin-top: 10px;
@@ -74,7 +68,7 @@ main {
       word-break: break-word;
     }
 
-    .content {
+    .price {
       color: #ccc;
       font-size: 1em;
       line-height: 1.6;

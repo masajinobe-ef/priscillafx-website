@@ -1,5 +1,6 @@
-# This code is licensed under the GPL-3.0 license
-# Written by masajinobe-ef
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
 
 from datetime import datetime
 
@@ -8,7 +9,7 @@ from sqlmodel import SQLModel, Field
 
 
 class Blog(SQLModel, table=True):
-    __tablename__ = "blog"
+    __tablename__ = "Blog"
 
     id: int | None = Field(default=None, primary_key=True)
     title: str

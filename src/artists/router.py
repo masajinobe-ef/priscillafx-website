@@ -17,37 +17,37 @@ from auth.config import current_superuser
 from auth.models import User
 
 # Models
-from blog.models import Blog
+from artists.models import Artists
 
 # Database
 from database import async_engine
 
 
-router = APIRouter(prefix="/blog", tags=["Blog"])
+router = APIRouter(prefix="/artists", tags=["Artists"])
 
 
-@router.get("/get_posts")
-@cache(expire=60, namespace="all_posts")
-async def get_posts():
+@router.get("/get_artists")
+@cache(expire=60, namespace="all_artists")
+async def get_artists():
     try:
         async with AsyncSession(async_engine) as session:
-            statement = select(Blog)
+            statement = select(Artists)
             results = await session.exec(statement)
-            posts = [post for post in results]
-            if not posts:
+            artists = [artist for artist in results]
+            if not artists:
                 return {
                     "status": "Info",
                     "data": None,
-                    "details": "No posts found",
+                    "details": "No artists found",
                 }
             return {
                 "status": "Success",
-                "data": posts,
-                "details": "Posts found",
+                "data": artists,
+                "details": "Artists found",
             }
 
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -58,39 +58,39 @@ async def get_posts():
         )
 
 
-@router.post("/add_post")
-async def add_post(
+@router.post("/add_artist")
+async def add_artist(
     user: User = Depends(current_superuser),
-    title: str = Form(),
-    content: str = Form(),
-    image_url: str = Form(None),
-    file_url: str = Form(None),
+    image_url: str = Form(),
+    full_name: str = Form(),
+    band: str = Form(),
+    link: str = Form(None),
 ):
-    new_post = Blog(
-        title=title, content=content, image_url=image_url, file_url=file_url
+    new_artist = Artists(
+        image_url=image_url, full_name=full_name, band=band, link=link
     )
 
     try:
         async with AsyncSession(async_engine) as session:
-            session.add(new_post)
+            session.add(new_artist)
 
             await session.commit()
-            await session.refresh(new_post)
+            await session.refresh(new_artist)
 
-            if new_post.id is not None:
+            if new_artist.id is not None:
                 return {
                     "status": "Success",
-                    "data": {"id": new_post.id},
-                    "message": "Post added successfully",
+                    "data": {"id": new_artist.id},
+                    "message": "Artist added successfully",
                 }
             return {
                 "status": "Error",
                 "data": None,
-                "message": "Post has not been added",
+                "message": "Artist has not been added",
             }
 
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -101,33 +101,33 @@ async def add_post(
         )
 
 
-@router.post("/delete_post")
-async def delete_post(
+@router.post("/delete_artist")
+async def delete_artist(
     user: User = Depends(current_superuser), id: int = Form()
 ):
     try:
         async with AsyncSession(async_engine) as session:
-            statement = select(Blog).where(Blog.id == id)
+            statement = select(Artists).where(Artists.id == id)
             results = await session.exec(statement)
-            blog = results.one()
+            artist = results.one()
 
-            await session.delete(blog)
+            await session.delete(artist)
             await session.commit()
 
-            if blog is None:
+            if artist is None:
                 return {
                     "status": "Info",
                     "data": None,
-                    "details": "No post for delete",
+                    "details": "No artist for delete",
                 }
             return {
                 "status": "Success",
-                "data": blog,
-                "details": "Post was deleted",
+                "data": artist,
+                "details": "Artist was deleted",
             }
 
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
         raise HTTPException(
             status_code=500,
             detail={

@@ -1,5 +1,6 @@
-# This code is licensed under the GPL-3.0 license
-# Written by masajinobe-ef
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
 
 # FastAPI Users
 from fastapi_users import FastAPIUsers
@@ -19,7 +20,7 @@ from auth.models import User
 
 # Cookie with JWT
 cookie_transport = CookieTransport(
-    cookie_name="priscillafx", cookie_max_age=3600
+    cookie_name="priscillafx_authorized", cookie_max_age=3600
 )
 
 
@@ -38,9 +39,14 @@ fastapi_users = FastAPIUsers[User, int](
     [auth_backend],
 )
 
+# Roles
+# User
 current_user = fastapi_users.current_user()
+# Active user
 current_active_user = fastapi_users.current_user(active=True)
+# Active verified user
 current_active_verified_user = fastapi_users.current_user(
     active=True, verified=True
 )
+# Active superuser
 current_superuser = fastapi_users.current_user(active=True, superuser=True)

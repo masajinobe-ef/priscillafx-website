@@ -1,5 +1,6 @@
-# This code is licensed under the GPL-3.0 license
-# Written by masajinobe-ef
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
 
 from datetime import datetime
 
@@ -22,7 +23,7 @@ from database import Base
 
 
 class Role(Base):
-    __tablename__ = "role"
+    __tablename__ = "Role"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
@@ -30,7 +31,7 @@ class Role(Base):
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
-    __tablename__ = "user"
+    __tablename__ = "User"
 
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
