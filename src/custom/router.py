@@ -23,7 +23,7 @@ from custom.models import Custom
 from database import async_engine
 
 # Loguru
-from loguru import logger
+from logger import logger
 
 
 router = APIRouter(prefix='/custom', tags=['Custom'])

@@ -18,7 +18,7 @@ from fastapi_cache.backends.redis import RedisBackend
 from redis import asyncio as aioredis
 
 # Loguru
-from loguru import logger
+from logger import logger
 
 # Config
 from config import REDIS_HOST, REDIS_PORT
@@ -35,6 +35,8 @@ from tasks.router import router as router_tasks
 # Startup events
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    logger.info('FastAPI is started')
+
     # Redis
     try:
         redis = aioredis.from_url(
@@ -43,9 +45,10 @@ async def lifespan(app: FastAPI):
             decode_responses=True,
         )
         FastAPICache.init(RedisBackend(redis), prefix='fastapi-cache')
+        logger.info('Redis is started')
 
     except Exception as e:
-        logger.error(f'Redis: {e}')
+        logger.error(f'Redis error: {e}')
 
     yield
 

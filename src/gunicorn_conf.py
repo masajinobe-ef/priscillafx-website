@@ -1,4 +1,9 @@
+"""This code is licensed under the GPL-3.0 license
+Written by masajinobe-ef
+"""
+
 import multiprocessing
+
 
 bind = '0.0.0.0:8000'
 

@@ -1,6 +1,8 @@
+# General
 .vscode
 .env
 src/cert/*
+src/logs/*
 
 # Packages
 /dist/*

@@ -20,7 +20,7 @@ from artists.models import Artists
 from database import async_engine
 
 # Loguru
-from loguru import logger
+from logger import logger
 
 
 router = APIRouter(tags=['Pages'])

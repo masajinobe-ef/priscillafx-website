@@ -23,7 +23,7 @@ from blog.models import Blog
 from database import async_engine
 
 # Loguru
-from loguru import logger
+from logger import logger
 
 
 router = APIRouter(prefix='/blog', tags=['Blog'])
