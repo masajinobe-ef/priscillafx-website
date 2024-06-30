@@ -20,10 +20,10 @@ from src.config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
 from src.database import Base
 
 # Models
-from src.blog.models import *  # noqa: F403
-from src.auth.models import *  # noqa: F403
-from src.artists.models import *  # noqa: F403
-from src.custom.models import *  # noqa: F403
+from src.blog.models import *
+from src.auth.models import *
+from src.artists.models import *
+from src.custom.models import *
 
 
 # this is the Alembic Config object, which provides
@@ -31,11 +31,11 @@ from src.custom.models import *  # noqa: F403
 config = context.config
 
 section = config.config_ini_section
-config.set_section_option(section, "DB_HOST", DB_HOST)
-config.set_section_option(section, "DB_PORT", DB_PORT)
-config.set_section_option(section, "DB_NAME", DB_NAME)
-config.set_section_option(section, "DB_USER", DB_USER)
-config.set_section_option(section, "DB_PASS", DB_PASS)
+config.set_section_option(section, 'DB_HOST', DB_HOST)
+config.set_section_option(section, 'DB_PORT', DB_PORT)
+config.set_section_option(section, 'DB_NAME', DB_NAME)
+config.set_section_option(section, 'DB_USER', DB_USER)
+config.set_section_option(section, 'DB_PASS', DB_PASS)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -66,7 +66,7 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    url = config.get_main_option('sqlalchemy.url')
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -87,7 +87,7 @@ def run_migrations_online() -> None:
     """
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
+        prefix='sqlalchemy.',
         poolclass=pool.NullPool,
     )
 

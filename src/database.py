@@ -16,12 +16,16 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import DeclarativeBase
 
+# Loguru
+from loguru import logger
+
 # Config
 from config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
 
+
 # Database onnection string
 DATABASE_URL = (
-    f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    f'postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 )
 
 
@@ -52,4 +56,4 @@ async def init_models() -> None:
             # await conn.run_sync(SQLModel.metadata.drop_all)
 
     except ConnectionRefusedError as e:
-        print(f"Error connecting to the database: {e}")
+        logger.error(f'Error connecting to the database: {e}')

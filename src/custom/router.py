@@ -22,12 +22,15 @@ from custom.models import Custom
 # Database
 from database import async_engine
 
+# Loguru
+from loguru import logger
 
-router = APIRouter(prefix="/custom", tags=["Custom"])
+
+router = APIRouter(prefix='/custom', tags=['Custom'])
 
 
-@router.get("/get_custom")
-@cache(expire=60, namespace="all_custom")
+@router.get('/get_custom')
+@cache(expire=60, namespace='all_custom')
 async def get_custom():
     try:
         async with AsyncSession(async_engine) as session:
@@ -36,29 +39,29 @@ async def get_custom():
             customs = [custom for custom in results]
             if not customs:
                 return {
-                    "status": "Info",
-                    "data": None,
-                    "details": "No custom found",
+                    'status': 'Info',
+                    'data': None,
+                    'details': 'No custom found',
                 }
             return {
-                "status": "Success",
-                "data": customs,
-                "details": "Custom found",
+                'status': 'Success',
+                'data': customs,
+                'details': 'Custom found',
             }
 
     except Exception as e:
-        print(f"Error: {e}")
+        logger.error(f'Error getting custom: {e}')
         raise HTTPException(
             status_code=500,
             detail={
-                "status": "Error",
-                "data": None,
-                "details": "Server-side error",
+                'status': 'Error',
+                'data': None,
+                'details': 'Server-side error',
             },
         )
 
 
-@router.post("/add_custom")
+@router.post('/add_custom')
 async def add_custom(
     user: User = Depends(current_superuser),
     name: str = Form(),
@@ -79,29 +82,29 @@ async def add_custom(
 
             if new_custom.id is not None:
                 return {
-                    "status": "Success",
-                    "data": {"id": new_custom.id},
-                    "message": "Custom added successfully",
+                    'status': 'Success',
+                    'data': {'id': new_custom.id},
+                    'message': 'Custom added successfully',
                 }
             return {
-                "status": "Error",
-                "data": None,
-                "message": "Custom has not been added",
+                'status': 'Error',
+                'data': None,
+                'message': 'Custom has not been added',
             }
 
     except Exception as e:
-        print(f"Error: {e}")
+        logger.error(f'Error adding custom: {e}')
         raise HTTPException(
             status_code=500,
             detail={
-                "status": "Error",
-                "data": None,
-                "details": "Server-side error",
+                'status': 'Error',
+                'data': None,
+                'details': 'Server-side error',
             },
         )
 
 
-@router.post("/delete_custom")
+@router.post('/delete_custom')
 async def delete_custom(
     user: User = Depends(current_superuser), id: int = Form()
 ):
@@ -116,23 +119,23 @@ async def delete_custom(
 
             if artist is None:
                 return {
-                    "status": "Info",
-                    "data": None,
-                    "details": "No custom for delete",
+                    'status': 'Info',
+                    'data': None,
+                    'details': 'No custom for delete',
                 }
             return {
-                "status": "Success",
-                "data": artist,
-                "details": "Custom was deleted",
+                'status': 'Success',
+                'data': artist,
+                'details': 'Custom was deleted',
             }
 
     except Exception as e:
-        print(f"Error: {e}")
+        logger.error(f'Error deleting custom: {e}')
         raise HTTPException(
             status_code=500,
             detail={
-                "status": "Error",
-                "data": None,
-                "details": "Server-side error",
+                'status': 'Error',
+                'data': None,
+                'details': 'Server-side error',
             },
         )

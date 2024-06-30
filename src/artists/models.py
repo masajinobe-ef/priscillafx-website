@@ -7,7 +7,7 @@ from sqlmodel import SQLModel, Field
 
 
 class Artists(SQLModel, table=True):
-    __tablename__ = "Artists"
+    __tablename__ = 'Artists'
 
     id: int | None = Field(default=None, primary_key=True)
     image_url: str

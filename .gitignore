@@ -1,5 +1,6 @@
 .vscode
 .env
+src/cert/*
 
 # Packages
 /dist/*

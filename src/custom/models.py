@@ -7,7 +7,7 @@ from sqlmodel import SQLModel, Field
 
 
 class Custom(SQLModel, table=True):
-    __tablename__ = "Custom"
+    __tablename__ = 'Custom'
 
     id: int | None = Field(default=None, primary_key=True)
     name: str

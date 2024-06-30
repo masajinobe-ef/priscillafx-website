@@ -17,6 +17,9 @@ from fastapi_cache.backends.redis import RedisBackend
 # Redis
 from redis import asyncio as aioredis
 
+# Loguru
+from loguru import logger
+
 # Config
 from config import REDIS_HOST, REDIS_PORT
 
@@ -35,14 +38,14 @@ async def lifespan(app: FastAPI):
     # Redis
     try:
         redis = aioredis.from_url(
-            f"redis://{REDIS_HOST}:{REDIS_PORT}",
-            encoding="utf8",
+            f'redis://{REDIS_HOST}:{REDIS_PORT}',
+            encoding='utf8',
             decode_responses=True,
         )
-        FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+        FastAPICache.init(RedisBackend(redis), prefix='fastapi-cache')
 
     except Exception as e:
-        print(f"Redis: {e}")
+        logger.error(f'Redis: {e}')
 
     yield
 
@@ -50,19 +53,20 @@ async def lifespan(app: FastAPI):
 # FastAPI initialize
 app = FastAPI(
     lifespan=lifespan,
-    title="PriscillaFX",
-    swagger_ui_parameters={"syntaxHighlight.theme": "obsidian"},
+    title='PriscillaFX',
+    swagger_ui_parameters={'syntaxHighlight.theme': 'obsidian'},
     redoc_url=None,
 )
+
 # Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
 # Files
 # App Favicon
-@app.get("/favicon.ico", include_in_schema=False)
+@app.get('/favicon.ico', include_in_schema=False)
 async def favicon() -> FileResponse:
-    return FileResponse("static/icons/favicon.ico")
+    return FileResponse('static/icons/favicon.ico')
 
 
 # Routers
@@ -73,23 +77,30 @@ app.include_router(router_artists)
 app.include_router(router_pages)
 app.include_router(router_tasks)
 
+
 # CORS
-origins = [
-    "http://localhost:5500",
-    "http://localhost:8080",
-    "http://localhost",
-    "https://localhost",
-]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[
+        'http://localhost:5500',
+        'http://localhost:8080',
+        'http://localhost',
+        'https://localhost',
+    ],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
+    allow_methods=['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH', 'PUT'],
     allow_headers=[
-        "Content-Type",
-        "Set-Cookie",
-        "Access-Control-Allow-Headers",
-        "Access-Control-Allow-Origin",
-        "Authorization",
+        'Content-Type',
+        'Set-Cookie',
+        'Access-Control-Allow-Headers',
+        'Access-Control-Allow-Origin',
+        'Authorization',
     ],
 )
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run(
+        app, host='127.0.0.1', port=5500, log_level='info', lifespan='on'
+    )

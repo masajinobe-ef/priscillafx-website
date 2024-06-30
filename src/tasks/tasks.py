@@ -19,21 +19,21 @@ from config import (
 from celery import Celery
 
 
-celery = Celery("tasks", broker=f"redis://{REDIS_HOST}:{REDIS_PORT}")
+celery = Celery('tasks', broker=f'redis://{REDIS_HOST}:{REDIS_PORT}')
 
 
 def get_email_template(username: str):
     email = EmailMessage()
-    email["Subject"] = "Hi!"
-    email["From"] = SMTP_USER
-    email["To"] = SMTP_USER
+    email['Subject'] = 'Hi!'
+    email['From'] = SMTP_USER
+    email['To'] = SMTP_USER
 
     email.set_content(
-        "<div>"
+        '<div>'
         f'<h1 style="color: red;">Здравствуйте, {username}! Добро пожаловать на сайт ШИЗОФРЕНИЯ! шизофрения.. шизофрения...</h1>'
         '<img src="https://priscilla-custom-effects.github.io/img/items/OD-820.jpg>'
-        "</div>",
-        subtype="html",
+        '</div>',
+        subtype='html',
     )
     return email
 

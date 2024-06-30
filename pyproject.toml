@@ -24,6 +24,22 @@ celery = "^5.4.0"
 flower = "^2.0.1"
 gunicorn = "^22.0.0"
 psycopg2-binary = "^2.9.9"
+cryptography = "^42.0.8"
+loguru = "^0.7.2"
+
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+
+
+[tool.ruff.lint]
+ignore = ["F403"]
+
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
 
 
 [build-system]

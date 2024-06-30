@@ -1,10 +1,9 @@
-pic.png
-README.md
+.venv
 migrations/README
+pics
+README.md
 LICENSE
 .vscode
-.env-dev
-.venv
 
 # Git
 .git
