@@ -1,0 +1,23 @@
+# General
+.venv
+migrations/README
+pics
+README.md
+LICENSE
+.vscode
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

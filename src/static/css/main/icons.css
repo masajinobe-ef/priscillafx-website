@@ -1,0 +1,41 @@
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+
+.icon[data-icon="download"] {
+  background-image: url("/static/icons/icon-download.svg");
+}
+
+.icon[data-icon="home"] {
+  background-image: url("/static/icons/icon-home.svg");
+}
+
+.icon[data-icon="blog"] {
+  background-image: url("/static/icons/icon-blog.svg");
+}
+
+.icon[data-icon="custom"] {
+  background-image: url("/static/icons/icon-custom.svg");
+}
+
+.icon[data-icon="mods"] {
+  background-image: url("/static/icons/icon-mods.svg");
+}
+
+.icon[data-icon="artists"] {
+  background-image: url("/static/icons/icon-artists.svg");
+}
+
+.icon[data-icon="faq"] {
+  background-image: url("/static/icons/icon-faq.svg");
+}
+
+.icon[data-icon="about"] {
+  background-image: url("/static/icons/icon-about.svg");
+}

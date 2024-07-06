@@ -1,0 +1,148 @@
+body {
+  /* Font */
+  font-family: JetBrainsMono, sans-serif;
+  font-size: 1.6em;
+
+  /* Colors */
+  background-color: #000;
+  color: #fff;
+
+  /* Background image */
+  background: url("/static/img/background/bg4.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+
+  /* Positioning */
+  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  /* Disable horizontal scoll */
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: row;
+  margin: 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 1.8em;
+    text-shadow: 4px 4px 4px #000;
+  }
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .custom-container {
+    .custom {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      max-width: 720px;
+      min-width: 480px;
+    }
+
+    .image {
+      object-fit: cover;
+      width: 100%;
+      border-radius: 5px;
+      margin: 0px;
+    }
+
+    .name {
+      color: #fff;
+      font-size: 1.4em;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      word-break: break-word;
+    }
+
+    .price {
+      color: #ccc;
+      font-size: 1em;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8em;
+    margin: 0px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.menu-container {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  nav {
+    text-align: left;
+    padding: 20px;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+      li {
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(66, 39, 119, 1);
+        }
+
+        a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 1.4em;
+          display: block;
+          padding: 10px 20px;
+
+          /* Invert icon color */
+          .icon {
+            margin: 0px;
+            filter: invert(1); /* Инверсия цвета значков */
+          }
+
+          &:hover {
+            background-color: rgba(66, 39, 119, 1);
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  text-shadow: 4px 4px 4px #000;
+  background: rgba(0, 0, 0, 0.7);
+}

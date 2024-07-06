@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Priscilla Custom Effects</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/main/blog.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/main/icons.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/additional.css') }}"
+    />
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Blog</h1>
+    </header>
+    <main>
+      <div class="posts-container">
+        {% if posts %} {% for post in posts %}
+        <div class="post">
+          <div class="created-at">{{ post.created_at }}</div>
+          <div>
+            <a href="{{ post.image_url }}" target="_blank"
+              ><img class="image" src="{{ post.image_url }}" alt="image"
+            /></a>
+          </div>
+          <h2 class="title">{{ post.title }}</h2>
+          <div class="content">{{ post.content }}</div>
+          {% if post.file_url %}
+          <a href="{{ post.file_url }}" target="_blank"
+            >Download<span class="icon" data-icon="download"></span
+          ></a>
+          {% endif %}
+        </div>
+        {% endfor %} {% else %}
+        <p>No posts found</p>
+        {% endif %}
+      </div>
+      <div class="menu-container">
+        <nav>
+          <ul>
+            <li>
+              <a href="/"><span class="icon" data-icon="home"></span></a>
+            </li>
+            <li>
+              <a href="blog"><span class="icon" data-icon="blog"></span></a>
+            </li>
+            <li>
+              <a href="custom"><span class="icon" data-icon="custom"></span></a>
+            </li>
+            <li>
+              <a href="mods"><span class="icon" data-icon="mods"></span></a>
+            </li>
+            <li>
+              <a href="artists"
+                ><span class="icon" data-icon="artists"></span
+              ></a>
+            </li>
+            <li>
+              <a href="faq"><span class="icon" data-icon="faq"></span></a>
+            </li>
+            <li>
+              <a href="about"><span class="icon" data-icon="about"></span></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>

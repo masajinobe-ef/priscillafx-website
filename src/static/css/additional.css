@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("/static/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 1em;
+  }
+
+  nav ul li {
+    margin: 0 5px;
+  }
+
+  .info {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 0.8em;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 5px;
+  }
+
+  .info a img {
+    width: 6%;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  body {
+    font-size: 1.1em;
+  }
+
+  nav ul li {
+    margin: 0 8px;
+  }
+
+  .info {
+    padding: 15px;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 5px;
+  }
+
+  .info a img {
+    width: 6%;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+}

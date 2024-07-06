@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Priscilla Custom Effects</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/main/custom.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/main/icons.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/additional.css') }}"
+    />
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Custom</h1>
+    </header>
+    <main>
+      <div class="custom-container">
+        {% if not customs %}
+        <div>No custom found</div>
+        {% else %} {% for custom in customs %}
+        <div class="custom">
+          <div>
+            <a href="{{ url_for('static', path=custom.image_url) }}">
+              <img
+                class="image"
+                src="{{ url_for('static', path=custom.image_url) }}"
+                alt="{{ custom.id }}"
+              />
+            </a>
+          </div>
+          <div class="name">{{ custom.name }}</div>
+          <div class="price">{{ custom.price }}</div>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+      <div class="menu-container">
+        <nav>
+          <ul>
+            <li>
+              <a href="/"><span class="icon" data-icon="home"></span></a>
+            </li>
+            <li>
+              <a href="blog"><span class="icon" data-icon="blog"></span></a>
+            </li>
+            <li>
+              <a href="custom"><span class="icon" data-icon="custom"></span></a>
+            </li>
+            <li>
+              <a href="mods"><span class="icon" data-icon="mods"></span></a>
+            </li>
+            <li>
+              <a href="artists"
+                ><span class="icon" data-icon="artists"></span
+              ></a>
+            </li>
+            <li>
+              <a href="faq"><span class="icon" data-icon="faq"></span></a>
+            </li>
+            <li>
+              <a href="about"><span class="icon" data-icon="about"></span></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>

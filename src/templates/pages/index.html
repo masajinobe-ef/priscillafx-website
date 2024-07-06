@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Priscilla Custom Effects</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/main/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/main/icons.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', path='/css/additional.css') }}"
+    />
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico" />
+  </head>
+
+  <body>
+    <header>
+      <a href="about">
+        <img src="/static/img/logo.svg" alt="logo" class="logo" />
+      </a>
+    </header>
+
+    <main>
+      <div class="menu-container">
+        <nav>
+          <ul>
+            <li>
+              <a href="blog"><span class="icon" data-icon="blog"></span>Blog</a>
+            </li>
+            <li>
+              <a href="custom"
+                ><span class="icon" data-icon="custom"></span>Custom</a
+              >
+            </li>
+            <li>
+              <a href="mods"><span class="icon" data-icon="mods"></span>Mods</a>
+            </li>
+            <li>
+              <a href="artists"
+                ><span class="icon" data-icon="artists"></span>Artists</a
+              >
+            </li>
+            <li>
+              <a href="faq"><span class="icon" data-icon="faq"></span>F.A.Q.</a>
+            </li>
+            <li>
+              <a href="about"
+                ><span class="icon" data-icon="about"></span>About</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </main>
+
+    <footer>
+      <p>Contact us at priscilla.effects@gmail.com</p>
+    </footer>
+
+    <script src="{{ url_for('static', path='/js/main.js') }}" defer></script>
+  </body>
+</html>
