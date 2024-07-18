@@ -45,4 +45,4 @@
 
 ### License
 
-**This project is licensed under the GPL-3.0 license.**
+This project is licensed under GPL-3.0. Please refer to the [LICENSE](LICENSE) file for detailed license information.
