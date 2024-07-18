@@ -11,7 +11,12 @@
 [![Repository size](https://img.shields.io/github/repo-size/masajinobe-ef/priscillafx-website.svg?style=for-the-badge)](https://github.com/masajinobe-ef/priscillafx-website "Repository size")
 [![Top language](https://img.shields.io/github/languages/top/masajinobe-ef/priscillafx-website.svg?style=for-the-badge)](https://github.com/masajinobe-ef/priscillafx-website "Top language")
 
-## Сайт создан с использованием следующих технологий:
+## Описание
+
+Официальный сайт Priscilla FX - платформа, созданная с использованием технологий для создания API.
+Веб-сайт использует FastAPI в качестве серверной платформы.
+
+### Сайт создан с использованием следующих технологий:
 
 **Backend фреймворк:**
 
@@ -43,6 +48,6 @@
     <img src="pics/4.png" alt="4"/>
 </p>
 
-### License
+#### License
 
 This project is licensed under GPL-3.0. Please refer to the [LICENSE](LICENSE) file for detailed license information.
